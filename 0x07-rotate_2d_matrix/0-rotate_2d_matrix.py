@@ -1,7 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
-Rotate 2D Matrix
+ Rotate 2D Matrix
 """
+
 
 def rotate_2d_matrix(matrix):
     """
@@ -9,16 +10,11 @@ def rotate_2d_matrix(matrix):
     """
     n = len(matrix)
     for layer in range(n // 2):
-        first, last = layer, n - 1 - layer
+        first, last, offset = layer, n - 1 - layer, 0
         for i in range(first, last):
-            offset = i - first
             top = matrix[first][i]
-            # Move left to top
             matrix[first][i] = matrix[last - offset][first]
-            # Move bottom to left
             matrix[last - offset][first] = matrix[last][last - offset]
-            # Move right to bottom
             matrix[last][last - offset] = matrix[i][last]
-            # Move top to right
             matrix[i][last] = top
-
+            offset += 1
